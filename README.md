@@ -1,73 +1,45 @@
 Project Title
+Pipelined Arithmetic Datapath Using Shared Functional Units on FPGA
 
-Pipelined Arithmetic Datapath using Shared Functional Units (Quartus / FPGA)
+Project Overview
+This project implements a pipelined arithmetic datapath on an FPGA using Quartus schematic design. The datapath supports multiplication, addition, square root, comparison, and direct data loading using a single shared accumulator. The design focuses on efficient hardware utilization by separating narrow input operations from wide accumulation operations.
 
-Overview
-
-This project implements a shared, pipelined arithmetic datapath on FPGA using Quartus schematic design. The datapath supports multiplication, addition, square root, comparison, and direct load operations using a single accumulator and a MUX-controlled feedback path. The design demonstrates efficient hardware resource utilization through narrow multiply and wide accumulate architecture.
+The architecture demonstrates how multiple arithmetic operations can share common resources through a multiplexer controlled datapath, similar to real processor and DSP designs.
 
 Architecture Description
+The datapath consists of the following main blocks:
 
-The datapath consists of:
+An 8 bit by 8 bit multiplier used for low complexity and high speed multiplication
+A 32 bit adder used for accumulation and intermediate arithmetic operations
+A 32 bit square root unit that operates on accumulated values
+A comparator used for control and decision making
+A 32 bit accumulator register that stores intermediate and final results
+A multiplexer that selects which operation result is written back to the accumulator
 
-8-bit × 8-bit Multiplier for low-resource, high-speed multiplication
+Two different operand widths are intentionally used:
 
-32-bit Adder for accumulation and intermediate results
+8 bit input buses are used for multiplication
+32 bit input buses are used for addition, square root, comparison, and direct loading
 
-32-bit Square Root unit operating on accumulated values
+This separation reduces hardware cost while maintaining numerical precision.
 
-Comparator for control decisions
-
-32-bit Accumulator Register
-
-MUX-based result selection
-
-Two operand widths are used:
-
-8-bit buses (A8, B8) → multiplication stage
-
-32-bit buses (A32, B32) → add, sqrt, compare, and load operations
-
-This separation allows optimized multiplication while preserving precision during accumulation.
-
-Dataflow
-
-External/RAM data enters through 8-bit inputs
-
-Multiplier produces a 16-bit result
-
-Result is extended and accumulated into 32-bit register
-
-Accumulator feeds ADD, SQRT, or Comparator
-
-MUX selects the next accumulator value
+Data Flow Explanation
+Input data enters the system either from memory or external inputs. Small width data is routed to the multiplier. The multiplication result is then extended to 32 bits and accumulated in the main register. The accumulator output is fed back to the adder, square root unit, and comparator. The multiplexer selects the appropriate result based on the control logic and updates the accumulator on the next clock cycle.
 
 Key Design Concepts
+Narrow multiply and wide accumulate architecture
+Shared functional units with multiplexer based selection
+Pipelined data flow using registers
+Efficient FPGA resource utilization
+Scalable and modular datapath structure
 
-Narrow multiply, wide accumulate (DSP-style architecture)
-
-Resource-efficient FPGA design
-
-MUX-controlled shared datapath
-
-FSM-friendly structure
-
-Scalable bit-widths
-
-Tools Used
-
+Design Tools
 Quartus Prime Lite Edition
-
-Block Diagram File (BDF)
-
-Verilog/VHDL IP blocks
+Block Diagram File based schematic design
+Verilog and VHDL IP blocks
 
 Applications
-
-DSP pipelines
-
-MAC-based computation
-
+Digital signal processing pipelines
+Multiply accumulate based computation
 FPGA arithmetic accelerators
-
-Educational processor/datapath design
+Educational datapath and processor design
