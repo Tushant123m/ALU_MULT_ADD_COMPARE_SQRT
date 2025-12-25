@@ -2,7 +2,7 @@ Project Title
 Pipelined Arithmetic Datapath Using Shared Functional Units on FPGA
 
 Project Overview
-This project implements a pipelined arithmetic datapath on an FPGA using Quartus schematic design. The datapath supports multiplication, addition, square root, comparison, and direct data loading using a single shared accumulator. The design focuses on efficient hardware utilization by separating narrow input operations from wide accumulation operations.
+This project implements a pipelined arithmetic datapath on an FPGA using Quartus schematic design. The datapath supports multiplication, addition, square root, comparison, and direct data loading using a single shared accumulator. The design focuses on efficient hardware utilization by separating narrow input operations from wide accumulation operations. A hobby plus skill development based project is designed.
 
 The architecture demonstrates how multiple arithmetic operations can share common resources through a multiplexer controlled datapath, similar to real processor and DSP designs.
 
